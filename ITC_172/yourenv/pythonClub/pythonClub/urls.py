@@ -31,3 +31,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('pythonClub/', include('pythonClub.urls'))
 ]
+
+
+from django.urls import path
+from . import views
+
+urlpatterns=[
+    path('', views.index, name='index'),
+]
