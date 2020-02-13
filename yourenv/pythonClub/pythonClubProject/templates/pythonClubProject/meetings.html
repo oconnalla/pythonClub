@@ -11,7 +11,7 @@
  </tr>
  {% for t in meeting_list %}
    <tr>
-       <td>{{ t.meeting_title }}</td>
+        <td><a href="{% url 'meetingDetails' id=t.id %}">{{ t.meeting_title }}</a></td>
        <td>{{ t.meeting_date }}</td>
        <td>{{ t.meeting_time }}</td>
        <td>{{ t.location }}</td>

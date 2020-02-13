@@ -30,8 +30,8 @@ class Meeting_Minutes(models.Model):
         return self.meetingID, self.attendance, self.minutes_text
     
     class Meta:
-        db_table='Meeting Minutes'
-       # verbose_name_plural='Meeting Minutes'
+        db_table='Meeting_Minutes'
+        verbose_name_plural='Meeting_Minutes'
 
 
 #Model 3 of 4
