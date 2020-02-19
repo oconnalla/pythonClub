@@ -27,7 +27,8 @@ class Meeting_Minutes(models.Model):
 
     #NEED TO ADD METHODS###################
     def __str__(self):
-        return self.meetingID, self.attendance, self.minutes_text
+        return str(self.meetingID)
+        #self.attendance, self.minutes_text
     
     class Meta:
         db_table='Meeting_Minutes'

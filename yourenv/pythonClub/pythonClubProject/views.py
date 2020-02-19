@@ -20,8 +20,8 @@ def getResources(request):
 
 def getEvents(request):
     meeting_list=Meeting.objects.all()
-    return render(request, 'pythonClubProject/events.html' ,{'meeting_list' : meeting_list})
+    return render(request, 'pythonClubProject/events.html',{'meeting_list' : meeting_list})
 
 def meetingDetails(request, id):
     meet=get_object_or_404(Meeting_Minutes, pk=id)
-    return render(request, 'pythonClubApp/meetingDetails.html', {'meet': meet})
+    return render(request, 'pythonClubProject/meetingDetails.html', {'meet': meet})

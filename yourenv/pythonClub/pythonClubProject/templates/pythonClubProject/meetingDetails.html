@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Meeting ID: {{ meet.meetingID }}</h2>
-<p>id: {{ meet.id }}</p>
-<p>Attendance: {{ meet.attendance }}</p>
+<h2>Meeting ID: {{ meet.Meeting.meeting_title }}</h2>
 <p>Minutes Text: {{ meet.minutes_text}}</p>
 
 
