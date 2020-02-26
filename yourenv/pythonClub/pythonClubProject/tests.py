@@ -1,6 +1,7 @@
 from django.test import TestCase
-from .models import Meeting, Resource, Event, Meeting_Minutes 
-from .views import index, getMeetings, getResources, getEvents, meetingDetails, getMeetingMinutes
+from .models import Meeting, Resource, Event, Meeting_Minutes
+from .views import index, getMeetings, getResources, getEvents, meetingDetails, getMeetingMinutes, newMeeting
+from .forms import MeetingForm
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -125,3 +126,23 @@ class GetEventsTest(TestCase):
         # )
        
         # self.meet = Meeting_Minutes.objects.create(meetingID= '1', attendace = "1", minutes_text= "blah")
+
+
+
+
+#Form tests
+
+class MeetingType_Form_Test(TestCase):
+    def test_typeform_is_valid(self):
+        form=MeetingForm(data={'meeting_title': "team Meeting", 'meeting_date' : "10/27/2020", 'meeting_time': "09:00:00", 'location': "Seattle", 'agenda': "get new staff onboarded"})
+        self.assertTrue(form.is_valid())
+
+    #second test asserts form is still valid when we leave out optional description field.
+    def test_typeform_minus_descript(self):
+        form=MeetingForm(data={'meeting_title': "team Meeting", 'meeting_date' : "10/27/2020", 'meeting_time': "09:00:00"})
+        self.assertTrue(form.is_valid())
+    
+    #final test for form asserts that form will fail if we don't enter anything
+    def test_typeform_empty(self):
+        form=MeetingForm(data={'meeting_title': ""})
+        self.assertFalse(form.is_valid())
