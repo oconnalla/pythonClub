@@ -146,3 +146,26 @@ class MeetingType_Form_Test(TestCase):
     def test_typeform_empty(self):
         form=MeetingForm(data={'meeting_title': ""})
         self.assertFalse(form.is_valid())
+
+
+
+#test authentication
+class New_Meeting_authentication_test(TestCase):
+    def setUp(self):
+        self.test_user=User.objects.create_user(username='testuser1', password='P@ssw0rd1')
+        self.type=Meeting.objects.create
+        
+        # ( user=self.test_user)
+
+        # self.meet = Meeting(meeting_title='meetings', meeting_date='02/12/2020', meeting_time= '00:07:00', location = 'Renton, WA', agenda ='get budget in order')
+
+    def test_redirect_if_not_logged_in(self):
+        response=self.client.get(reverse('newMeeting'))
+        self.assertRedirects(response, '/accounts/login/?next=/pythonClubProject/newMeeting/')
+
+    def test_Logged_in_uses_correct_template(self):
+        login=self.client.login(username='testuser1', password='P@ssw0rd1')
+        response=self.client.get(reverse('newMeeting'))
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'pythonClubProject/newMeeting.html')   
